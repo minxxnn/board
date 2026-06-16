@@ -1,0 +1,17 @@
+diff a/board_back/src/main/java/com/myboard/board/controller/BoardController.java b/board_back/src/main/java/com/myboard/board/controller/BoardController.java	(rejected hunks)
+@@ -54,9 +54,15 @@
+  
+      // 게시글 수정
+      @PutMapping("/{id}")
+++<<<<<<< HEAD
+ +    public ResponseEntity<BoardDto> editBoard(@PathVariable Long id,
+ +                                                      @RequestBody BoardDto boardRequestDto) {
+ +        BoardDto result = boardService.editBoard(id, boardRequestDto);
+++=======
++     public ResponseEntity<BoardResponseDto> editBoard(@PathVariable Long id,
++                                                       @RequestBody BoardRequestDto boardRequestDto) {
++         BoardResponseDto result = boardService.editBoard(id, boardRequestDto);
+++>>>>>>> f1cd173 (board back success)
+          if (result == null) {
+              return ResponseEntity.notFound().build();
+          }
