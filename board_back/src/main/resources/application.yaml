@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: board
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/board_db
+    username: root
+    password: 1111
+
+    # JPA / Hibernate 설정
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+
+    # MySQL 방언 (Spring Boot 3.x)
+    database-platform: org.hibernate.dialect.MySQLDialect
+
+    # SQL init 처리
+    defer-datasource-initialization: false
+    sql:
+      init:
+        mode: NEVER
+
+# SQL 파라미터 로깅 (Spring Boot 3.x / Hibernate 6)
+logging:
+  level:
+    org.hibernate.orm.jdbc.bind: trace
