@@ -1,7 +1,6 @@
 package com.myboard.board.controller;
 
-import com.myboard.board.dto.BoardRequestDto;
-import com.myboard.board.dto.BoardResponseDto;
+import com.myboard.board.dto.BoardDto;
 import com.myboard.board.entity.Board;
 import com.myboard.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -27,14 +26,14 @@ public class BoardController {
 
     // 게시글 상세 조회
     @GetMapping("/{id}")
-    public BoardResponseDto getBoardById(@PathVariable Long id) {
+    public BoardDto getBoardById(@PathVariable Long id) {
         System.out.println(id);
         return boardService.getBoardById(id);
     }
 
     // 게시글 작성
     @PostMapping()
-    public String writeBoard(@RequestBody BoardRequestDto boardRequestDto) {
+    public String writeBoard(@RequestBody BoardDto boardRequestDto) {
         System.out.println(boardRequestDto);
         boardService.writeBoard(boardRequestDto);
         return "게시글이 작성되었습니다.";
@@ -42,9 +41,9 @@ public class BoardController {
 
     // 게시글 수정
     @PutMapping("/{id}")
-    public ResponseEntity<BoardResponseDto> editBoard(@PathVariable Long id,
-                                                      @RequestBody BoardRequestDto boardRequestDto) {
-        BoardResponseDto result = boardService.editBoard(id, boardRequestDto);
+    public ResponseEntity<BoardDto> editBoard(@PathVariable Long id,
+                                                      @RequestBody BoardDto boardRequestDto) {
+        BoardDto result = boardService.editBoard(id, boardRequestDto);
         if (result == null) {
             return ResponseEntity.notFound().build();
         }
