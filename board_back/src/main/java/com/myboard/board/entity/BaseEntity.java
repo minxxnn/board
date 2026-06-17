@@ -13,6 +13,7 @@ import java.time.LocalDateTime;
 @Getter
 @MappedSuperclass // 이 클래스는 테이블로 만들지 말라는 뜻의 어노테이션
 @EntityListeners(AuditingEntityListener.class)
+
 public class BaseEntity {
 
     @CreatedDate
