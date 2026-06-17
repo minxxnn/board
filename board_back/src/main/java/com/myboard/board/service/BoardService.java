@@ -1,7 +1,6 @@
 package com.myboard.board.service;
 
-import com.myboard.board.dto.BoardRequestDto;
-import com.myboard.board.dto.BoardResponseDto;
+import com.myboard.board.dto.BoardDto;
 import com.myboard.board.entity.Board;
 import com.myboard.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -20,17 +19,17 @@ public class BoardService {
     }
 
     // 게시글 상세 조회
-    public BoardResponseDto getBoardById(Long id) {
+    public BoardDto getBoardById(Long id) {
         Board findBoardById = boardRepository.findById(id).orElse(null);
         if (findBoardById == null) {
             return null;
         } else {
-            return BoardResponseDto.toDto(findBoardById);
+            return BoardDto.toDto(findBoardById);
         }
     }
 
     // 게시글 작성
-    public void writeBoard(BoardRequestDto boardRequestDto) {
+    public void writeBoard(BoardDto boardRequestDto) {
         Board board = new Board();
         board.setUserId(boardRequestDto.getUserId());
         board.setTitle(boardRequestDto.getTitle());
@@ -39,7 +38,7 @@ public class BoardService {
     }
 
     // 게시글 수정
-    public BoardResponseDto editBoard(Long id, BoardRequestDto boardRequestDto) {
+    public BoardDto editBoard(Long id, BoardDto boardRequestDto) {
         Board board = boardRepository.findById(id).orElse(null);
         if (board == null) {
             return null;
@@ -47,7 +46,7 @@ public class BoardService {
         board.setTitle(boardRequestDto.getTitle());
         board.setContent(boardRequestDto.getContent());
         boardRepository.save(board);
-        return BoardResponseDto.toDto(board);
+        return BoardDto.toDto(board);
     }
 
     // 게시글 삭제

@@ -23,7 +23,7 @@ function BoardList() {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>#</th>
+            <th>id</th>
             <th>작성자</th>
             <th>제목</th>
             <th>작성일</th>
