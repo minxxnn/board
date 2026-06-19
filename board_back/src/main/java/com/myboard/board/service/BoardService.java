@@ -1,6 +1,7 @@
 package com.myboard.board.service;
 
-import com.myboard.board.dto.BoardDto;
+import com.myboard.board.dto.BoardRequestDto;
+import com.myboard.board.dto.BoardResponseDto;
 import com.myboard.board.entity.Board;
 import com.myboard.board.repository.BoardRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,17 +20,17 @@ public class BoardService {
     }
 
     // 게시글 상세 조회
-    public BoardDto getBoardById(Long id) {
+    public BoardRequestDto getBoardById(Long id) {
         Board findBoardById = boardRepository.findById(id).orElse(null);
         if (findBoardById == null) {
             return null;
         } else {
-            return BoardDto.toDto(findBoardById);
+            return BoardResponseDto.toDto(findBoardById);
         }
     }
 
     // 게시글 작성
-    public void writeBoard(BoardDto boardRequestDto) {
+    public void writeBoard(BoardRequestDto boardRequestDto) {
         Board board = new Board();
         board.setUserId(boardRequestDto.getUserId());
         board.setTitle(boardRequestDto.getTitle());
